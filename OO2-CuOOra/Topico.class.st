@@ -11,7 +11,7 @@ Class {
 
 { #category : #construction }
 Topico class >> nombre: unNombre descripcion: unaDescripcion [ 
-	^ self nombre: unNombre descripcion: unaDescripcion 
+	^ self new nombre: unNombre descripcion: unaDescripcion 
 ]
 
 { #category : #adding }

@@ -31,7 +31,7 @@ CuOOra >> agregarRespuestaA: unaPregunta conCuerpo: unCuerpo deUsuario: unUsuari
 
 { #category : #adding }
 CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
-	topicos add: Topico nombre: unNombre descripcion: unaDescripcion .
+	topicos add: (Topico nombre: unNombre descripcion: unaDescripcion).
 ]
 
 { #category : #deleting }
@@ -46,7 +46,13 @@ CuOOra >> calcularPuntajeUsuario: unUsuario [
 
 { #category : #adding }
 CuOOra >> crearUsuario: unNombre conContraseña: unaContraseña [
-	usuarios add: Usuario nombre: unNombre contraseña: unaContraseña fechaYhora: DateAndTime current .
+	usuarios add: (Usuario nombre: unNombre contraseña: unaContraseña fechaYhora: DateAndTime current).
+]
+
+{ #category : #initialize }
+CuOOra >> initialize [ 
+	usuarios := OrderedCollection new.
+	topicos := OrderedCollection new.
 ]
 
 { #category : #queries }
@@ -87,4 +93,14 @@ CuOOra >> registrarLikeA: unaPublicacion De: unUsuario [
 { #category : #adding }
 CuOOra >> registrarTopicoInteres: unTopico Para: unUsuario [ 
 	unUsuario agregarTopicoInteres: unTopico .
+]
+
+{ #category : #accessing }
+CuOOra >> topicos [
+	^ topicos
+]
+
+{ #category : #accessing }
+CuOOra >> usuarios [
+	^ usuarios
 ]

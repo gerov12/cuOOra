@@ -11,7 +11,7 @@ Class {
 
 { #category : #constructor }
 Valoracion class >> usuario: unUsuario horaYfecha: unDateTime like: unBooleano [
-	^ self usuario: unUsuario horaYfecha: unDateTime like: unBooleano
+	^ self new usuario: unUsuario horaYfecha: unDateTime like: unBooleano
 ]
 
 { #category : #setter }

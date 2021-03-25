@@ -15,7 +15,7 @@ Class {
 
 { #category : #construction }
 Usuario class >> nombre: unNombre contraseña: unaContraseña fechaYhora: unDateTime [ 
-	^ self nombre: unNombre contraseña: unaContraseña fechaYhora: unDateTime .
+	^ self new nombre: unNombre contraseña: unaContraseña fechaYhora: unDateTime .
 ]
 
 { #category : #adding }
