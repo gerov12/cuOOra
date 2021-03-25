@@ -11,8 +11,8 @@ Class {
 }
 
 { #category : #constructor }
-Publicacion class >> cuerpo: unString horaYfecha: unDateTime [
-	^ self cuerpo: unString horaYfecha: unDateTime
+Publicacion class >> cuerpo: unString horaYfecha: unDateTime usuario: unUsuario [
+	^ self cuerpo: unString horaYfecha: unDateTime usuario: unUsuario
 ]
 
 { #category : #constructor }
