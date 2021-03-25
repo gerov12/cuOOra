@@ -11,8 +11,7 @@ Class {
 
 { #category : #constructor }
 Pregunta class >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
-	self cuerpo: unCuerpo horaYfecha: unDatetime usuario: unUsuario.
-	^ self topicos: unaColeccion titulo: unTitulo
+	^  self topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime
 ]
 
 { #category : #constructor }
