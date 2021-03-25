@@ -16,13 +16,14 @@ Publicacion class >> cuerpo: unString horaYfecha: unDateTime [
 ]
 
 { #category : #constructor }
-Publicacion >> cuerpo: unString horaYfecha: unDateTime [
+Publicacion >> cuerpo: unString horaYfecha: unDateTime usuario: unUsuario [
 	valoraciones := OrderedCollection new.
 	cuerpo := unString.
 	horaYfecha := unDateTime.
+	usuario := unUsuario
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #queries }
 Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike: unBoolean [
 	valoraciones
 		detect: [ :cada | cada usuario = unUsuario ]
