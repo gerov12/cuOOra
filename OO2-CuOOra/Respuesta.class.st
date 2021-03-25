@@ -9,7 +9,7 @@ Respuesta class >> cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
 	self cuerpo: unCuerpo horaYfecha: unDatetime usuario: unUsuario
 ]
 
-{ #category : #constructor }
+{ #category : #queries }
 Respuesta >> eliminar [
 	usuario eliminarRespuesta: self.
 ]
