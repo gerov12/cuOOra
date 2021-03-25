@@ -6,7 +6,7 @@ Class {
 
 { #category : #constructor }
 Respuesta class >> cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
-	^ self new cuerpo: unCuerpo horaYfecha: unDatetime usuario: unUsuario
+	^ self new cuerpo: unCuerpo horaYfecha: unDatetime usuario: unUsuario .
 ]
 
 { #category : #constructor }
