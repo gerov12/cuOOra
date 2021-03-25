@@ -14,9 +14,15 @@ Valoracion class >> usuario: unUsuario horaYfecha: unDateTime like: unBooleano [
 	^ self usuario: unUsuario horaYfecha: unDateTime like: unBooleano
 ]
 
-{ #category : #'as yet unclassified' }
-Valoracion >> cambiarValoracion: unBooleano [
-	like := unBooleano
+{ #category : #setter }
+Valoracion >> cambiarValoracion: unBooleano conFechaYHora: unDatetime [
+	like := unBooleano.
+	horaYfecha := unDatetime.
+]
+
+{ #category : #accessing }
+Valoracion >> usuario [
+	^usuario
 ]
 
 { #category : #constructor }
