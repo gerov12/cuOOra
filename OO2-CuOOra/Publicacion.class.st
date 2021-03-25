@@ -23,20 +23,13 @@ Publicacion >> cuerpo: unString horaYfecha: unDateTime [
 ]
 
 { #category : #'as yet unclassified' }
-Publicacion >> registrarValoracionConUsuario: unUsuario horaYfecha: unDatetime valor: unBoolean [
-	valoraciones detect: [ :valoracion | valoracion usuario = unUsuario ] ifFound: [ ^self ] ifNone: [ valoraciones add Valoracion usuario: unUsuario horaYfecha: unDatetime like: unBoolean ]
-]
-
-{ #category : #'as yet unclassified' }
 Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike: unBoolean [
-
-	|unaValoracion nuevaValoracion|
-	nuevaValoracion := Valoracion usuario: unUsuario horaYfecha: unDatetime like: unBoolean.
-	
-	unaValoracion := valoraciones
-		detect: [ :valoracion | valoracion usuario = unUsuario ].
-	
-	unaValoracion isNotNil ifTrue: [ unaValoracion cambiarValoracion: unBoolean conFechaYHora: unDatetime ] ifFalse: [ valoraciones add Valoracion usuario: unUsuario horaYfecha: unDatetime like: unBoolean ]
+	valoraciones
+		detect: [ :cada | cada usuario = unUsuario ]
+		ifFound:
+			[ :valoracion | valoracion cambiarValoracion: unBoolean conFechaYHora: unDatetime ]
+		ifNone: [ valoraciones
+				add: (Valoracion usuario: unUsuario horaYfecha: unDatetime like: unBoolean) ]
 ]
 
 { #category : #abstract }
