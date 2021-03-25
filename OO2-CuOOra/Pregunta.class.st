@@ -38,7 +38,11 @@ Pregunta >> retornarPuntaje [
 ]
 
 { #category : #constructor }
-Pregunta >> topicos: unaColeccion titulo: unTitulo [
+Pregunta >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
 	topicos := unaColeccion.
 	titulo := unTitulo.
+	cuerpo := unCuerpo.
+	usuario := unUsuario.
+	horaYfecha := unDatetime.
+	respuestas := OrderedCollection new.
 ]
