@@ -44,4 +44,5 @@ Pregunta >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unU
 	usuario := unUsuario.
 	horaYfecha := unDatetime.
 	respuestas := OrderedCollection new.
+	valoraciones := OrderedCollection new.
 ]
