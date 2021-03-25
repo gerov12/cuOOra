@@ -11,27 +11,27 @@ Class {
 
 { #category : #constructor }
 Pregunta class >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
-	^  self topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime
+	^ self new topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime
 ]
 
-{ #category : #constructor }
+{ #category : #queries }
 Pregunta >> agregarRespueta: unaRespuesta [
 	respuestas add: unaRespuesta.
 ]
 
-{ #category : #constructor }
+{ #category : #queries }
 Pregunta >> eliminar [
 	topicos do: [ :topico | topico eliminarPregunta: self ].
 	respuestas do: [ :respuesta | respuesta eliminar ].
 	usuario eliminarPregunta: self.
 ]
 
-{ #category : #constructor }
+{ #category : #queries }
 Pregunta >> obtenerRespuestas [
 	^ respuestas
 ]
 
-{ #category : #constructor }
+{ #category : #queries }
 Pregunta >> retornarPuntaje [
 	^ 20 + self retornarDiferencia
 ]

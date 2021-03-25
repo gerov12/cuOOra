@@ -10,19 +10,6 @@ Class {
 	#category : #'OO2-CuOOra'
 }
 
-{ #category : #constructor }
-Publicacion class >> cuerpo: unString horaYfecha: unDateTime usuario: unUsuario [
-	^ self cuerpo: unString horaYfecha: unDateTime usuario: unUsuario
-]
-
-{ #category : #constructor }
-Publicacion >> cuerpo: unString horaYfecha: unDateTime usuario: unUsuario [
-	valoraciones := OrderedCollection new.
-	cuerpo := unString.
-	horaYfecha := unDateTime.
-	usuario := unUsuario
-]
-
 { #category : #queries }
 Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike: unBoolean [
 	valoraciones
