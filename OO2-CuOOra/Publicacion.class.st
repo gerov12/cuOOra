@@ -32,9 +32,8 @@ Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike:
 
 { #category : #queries }
 Publicacion >> retornarDiferencia [
-	valoraciones isEmpty ifTrue: [ ^0 ].
-	^ (valoraciones select: [ :valoracion | valoracion like ] size)
-		- valoraciones reject: [ :valoracion | valoracion like ] size
+	^ (valoraciones collect: [ :valoracion | valoracion valor ])
+		sumNumbers
 ]
 
 { #category : #abstract }
