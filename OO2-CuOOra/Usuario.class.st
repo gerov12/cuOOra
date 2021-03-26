@@ -35,7 +35,7 @@ Usuario >> agregarTopicoInteres: unTopico [
 
 { #category : #queries }
 Usuario >> calcularPuntaje [
-	^ (preguntas sumNumbers: [ :each | each retornarPuntaje ]) + (preguntas sumNumbers: [ :each | each retornarPuntaje ]) .
+	^ (preguntas sumNumbers: [ :each | each retornarPuntaje ]) + (respuestas sumNumbers: [ :each | each retornarPuntaje ]) .
 ]
 
 { #category : #deleting }
@@ -87,4 +87,9 @@ Usuario >> seguidos [
 { #category : #adding }
 Usuario >> seguirUsuario: unUsuario [ 
 	seguidos add: unUsuario .
+]
+
+{ #category : #accessing }
+Usuario >> topicosInteres [
+	^ topicosInteres
 ]
