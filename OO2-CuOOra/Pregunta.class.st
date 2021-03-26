@@ -41,6 +41,11 @@ Pregunta >> retornarPuntaje [
 	^ 20 + self retornarDiferencia
 ]
 
+{ #category : #accessing }
+Pregunta >> topicos [
+	^ topicos
+]
+
 { #category : #constructor }
 Pregunta >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
 	topicos := unaColeccion.
