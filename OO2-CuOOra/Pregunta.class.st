@@ -42,6 +42,11 @@ Pregunta >> retornarPuntaje [
 ]
 
 { #category : #accessing }
+Pregunta >> titulo [
+	^titulo
+]
+
+{ #category : #accessing }
 Pregunta >> topicos [
 	^ topicos
 ]
