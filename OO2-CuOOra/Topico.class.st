@@ -19,9 +19,19 @@ Topico >> agregarPregunta: unaPregunta [
 	preguntas add: unaPregunta .
 ]
 
+{ #category : #accessing }
+Topico >> descripcion [
+	^descripcion 
+]
+
 { #category : #deleting }
 Topico >> eliminarPregunta: unaPregunta [
 	preguntas remove: unaPregunta  ifAbsent: [ ^ self ]
+]
+
+{ #category : #accessing }
+Topico >> nombre [
+	^nombre
 ]
 
 { #category : #initialization }
