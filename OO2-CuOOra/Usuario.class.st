@@ -79,6 +79,11 @@ Usuario >> respuestas [
 	^ respuestas
 ]
 
+{ #category : #accessing }
+Usuario >> seguidos [
+	^ seguidos
+]
+
 { #category : #adding }
 Usuario >> seguirUsuario: unUsuario [ 
 	seguidos add: unUsuario .

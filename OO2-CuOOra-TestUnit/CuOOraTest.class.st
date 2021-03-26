@@ -35,13 +35,20 @@ CuOOraTest >> setUp [
 	
 	pregunta1 := Pregunta topicos: topicos1 titulo: '¿Como hago for en Python' cuerpo: 'necesito ayuda Python' usuario: usuario1 fechaYhora: DateAndTime current.
 	pregunta2 := Pregunta topicos: topicos2 titulo: '¿Como hago for en Java' cuerpo: 'necesito ayuda Java' usuario: usuario2 fechaYhora: DateAndTime current.
-	
-	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'No se...' deUsuario: usuario1.
-	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'Tampoco se...' deUsuario: usuario2.
+]
+
+{ #category : #tests }
+CuOOraTest >> testAgregarFollower [
+	cuOOra agregarFollowerA: usuario2 De: usuario1 .
+	self assert: ((usuario1 seguidos) includes: usuario2) equals: true . 
+	self assert: ((usuario2 seguidos) includes: usuario1) equals: false . 
 ]
 
 { #category : #tests }
 CuOOraTest >> testAgregarPregunta [
+	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'No se...' deUsuario: usuario1.
+	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'Tampoco se...' deUsuario: usuario2.
+	
 	self assert: cuOOra topicos first preguntas first equals: pregunta1.
 	self assert: cuOOra topicos last preguntas first equals: pregunta2.
 ]
@@ -61,4 +68,9 @@ CuOOraTest >> testAgregarTopico [
 CuOOraTest >> testCrearUsuario [
 	self assert: cuOOra usuarios first equals: usuario1.
 	self assert: cuOOra usuarios last equals: usuario2.
+]
+
+{ #category : #tests }
+CuOOraTest >> testRegistrarLike [
+	
 ]
