@@ -15,8 +15,13 @@ Pregunta class >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuari
 ]
 
 { #category : #queries }
-Pregunta >> agregarRespueta: unaRespuesta [
+Pregunta >> agregarRespuesta: unaRespuesta [
 	respuestas add: unaRespuesta.
+]
+
+{ #category : #method }
+Pregunta >> asociarATopics [
+	topicos do: [ :each | each agregarPregunta: self ]
 ]
 
 { #category : #queries }
@@ -26,8 +31,8 @@ Pregunta >> eliminar [
 	usuario eliminarPregunta: self.
 ]
 
-{ #category : #queries }
-Pregunta >> obtenerRespuestas [
+{ #category : #accesing }
+Pregunta >> respuestas [
 	^ respuestas
 ]
 
@@ -45,4 +50,5 @@ Pregunta >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unU
 	horaYfecha := unDatetime.
 	respuestas := OrderedCollection new.
 	valoraciones := OrderedCollection new.
+	self asociarATopics
 ]

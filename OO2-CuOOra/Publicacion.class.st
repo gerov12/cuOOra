@@ -20,7 +20,7 @@ Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike:
 				add: (Valoracion usuario: unUsuario horaYfecha: unDatetime like: unBoolean) ]
 ]
 
-{ #category : #abstract }
+{ #category : #queries }
 Publicacion >> retornarDiferencia [
 	^ (valoraciones
 		select: [ :valoracion | valoracion like ] size ) - valoraciones

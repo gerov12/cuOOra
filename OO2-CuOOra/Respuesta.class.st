@@ -14,7 +14,8 @@ Respuesta >> cuerpo: unString horaYfecha: unDateTime usuario: unUsuario [
 	valoraciones := OrderedCollection new.
 	cuerpo := unString.
 	horaYfecha := unDateTime.
-	usuario := unUsuario
+	usuario := unUsuario.
+
 ]
 
 { #category : #queries }
