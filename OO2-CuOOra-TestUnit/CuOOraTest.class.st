@@ -33,29 +33,10 @@ CuOOraTest >> setUp [
 	topicos2 := OrderedCollection new.
 	topicos2 add: topico2.
 	
-	pregunta1 := Pregunta topicos: topicos1 titulo: '¿Como hago for en Python' cuerpo: 'necesito ayuda Python' usuario: usuario1 fechaYhora: DateAndTime current.
-	pregunta2 := Pregunta topicos: topicos2 titulo: '¿Como hago for en Java' cuerpo: 'necesito ayuda Java' usuario: usuario2 fechaYhora: DateAndTime current.
-]
-
-{ #category : #tests }
-CuOOraTest >> testAgregarFollower [
-	cuOOra agregarFollowerA: usuario2 De: usuario1 .
-	self assert: ((usuario1 seguidos) includes: usuario2) equals: true . 
-	self assert: ((usuario2 seguidos) includes: usuario1) equals: false . 
-]
-
-{ #category : #tests }
-CuOOraTest >> testAgregarPregunta [
-	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'No se...' deUsuario: usuario1.
-	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'Tampoco se...' deUsuario: usuario2.
-	
-	self assert: cuOOra topicos first preguntas first equals: pregunta1.
-	self assert: cuOOra topicos last preguntas first equals: pregunta2.
-]
-
-{ #category : #tests }
-CuOOraTest >> testAgregarRespuesta [
-	self assert: pregunta1 respuestas size equals: 2
+	cuOOra agregarPreguntaConListaDeTopicos: topicos1 Titulo: '¿Como hago for en Python' yCuerpo: 'necesito ayuda Python' delUsuario: usuario1.
+	cuOOra agregarPreguntaConListaDeTopicos: topicos2 Titulo: '¿Como hago for en Java' yCuerpo: 'necesito ayuda Java' delUsuario: usuario2.
+	pregunta1 := topico1 preguntas first.
+	pregunta2 := topico2 preguntas first.
 ]
 
 { #category : #tests }
@@ -65,12 +46,53 @@ CuOOraTest >> testAgregarTopico [
 ]
 
 { #category : #tests }
+CuOOraTest >> testCalcularPuntajeUsuario [
+		self assert: (cuOOra calcularPuntajeUsuario: usuario1) equals: 20.
+		
+		cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'No se...' deUsuario: usuario1.
+		
+		self assert: (cuOOra calcularPuntajeUsuario: usuario1) equals: 70.
+]
+
+{ #category : #tests }
 CuOOraTest >> testCrearUsuario [
 	self assert: cuOOra usuarios first equals: usuario1.
 	self assert: cuOOra usuarios last equals: usuario2.
 ]
 
 { #category : #tests }
-CuOOraTest >> testRegistrarLike [
+CuOOraTest >> testObtenerPreguntasRelevantes [
+	self assert: (cuOOra obtenerPreguntasRelevantes: usuario1) size equals: 0.
 	
+	cuOOra agregarFollowerA: usuario2 De: usuario1 .
+	cuOOra registrarTopicoInteres: topico1 Para: usuario1.
+	
+	self assert: (cuOOra obtenerPreguntasRelevantes: usuario1) size equals: 2.
+	self assert: ((cuOOra obtenerPreguntasRelevantes: usuario1) includes: pregunta1) equals: true.
+	self assert: ((cuOOra obtenerPreguntasRelevantes: usuario1) includes: pregunta2) equals: true.
+]
+
+{ #category : #tests }
+CuOOraTest >> testObtenerPreguntasTopico [
+	self assert: (cuOOra obtenerPreguntasTopico: topico1) first equals: pregunta1.
+]
+
+{ #category : #tests }
+CuOOraTest >> testObtenerPreguntasUsuario [
+	self assert: (cuOOra obtenerPreguntasUsuario: usuario1) size equals: 1.
+	self assert: (cuOOra obtenerPreguntasUsuario: usuario2) size equals: 1.
+	self assert: ((cuOOra obtenerPreguntasUsuario: usuario1) includes: pregunta1) equals: true.
+	self assert: ((cuOOra obtenerPreguntasUsuario: usuario2) includes: pregunta2) equals: true.
+]
+
+{ #category : #tests }
+CuOOraTest >> testObtenerRespuestasUsuario [
+	self assert: (cuOOra obtenerRespuestas: pregunta1) size equals: 0.
+	
+	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'No se...' deUsuario: usuario1.
+	cuOOra agregarRespuestaA: pregunta1 conCuerpo: 'Tampoco se...' deUsuario: usuario2.
+	
+	self assert: (cuOOra obtenerRespuestas: pregunta1) size equals: 2.
+	self assert: (cuOOra obtenerRespuestas: pregunta1) first usuario equals: usuario1.
+	self assert: (cuOOra obtenerRespuestas: pregunta1) last usuario equals: usuario2.
 ]
