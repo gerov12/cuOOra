@@ -44,3 +44,11 @@ Valoracion >> usuario: unUsuario horaYfecha: unDateTime like: unBooleano [
 	horaYfecha := unDateTime.
 	like := unBooleano.
 ]
+
+{ #category : #accessing }
+Valoracion >> valor [
+	like ifNil: [ ^ 0 ].
+	like
+		ifTrue: [ ^ 1 ].
+	^ -1
+]
