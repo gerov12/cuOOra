@@ -18,7 +18,6 @@ CuOOra >> agregarPreguntaConListaDeTopicos: unaColeccion Titulo: unTitulo yCuerp
 	| pregunta |
 	pregunta := Pregunta topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: DateAndTime current.
 	unUsuario agregarPregunta: pregunta.
-	unaColeccion for: [ :each | each agregarPregunta: pregunta ].
 ]
 
 { #category : #adding }
