@@ -10,6 +10,16 @@ Class {
 	#category : #'OO2-CuOOra'
 }
 
+{ #category : #accessing }
+Publicacion >> cuerpo [
+	^ cuerpo
+]
+
+{ #category : #accessing }
+Publicacion >> horaYfecha [
+	^ horaYfecha 
+]
+
 { #category : #queries }
 Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike: unBoolean [
 	valoraciones
@@ -30,4 +40,14 @@ Publicacion >> retornarDiferencia [
 { #category : #abstract }
 Publicacion >> retornarPuntaje [
 	^ SubclassResponsibility
+]
+
+{ #category : #accessing }
+Publicacion >> usuario [
+	^usuario
+]
+
+{ #category : #accessing }
+Publicacion >> valoraciones [
+	^ valoraciones
 ]
