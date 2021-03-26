@@ -16,11 +16,16 @@ Valoracion class >> usuario: unUsuario horaYfecha: unDateTime like: unBooleano [
 
 { #category : #setter }
 Valoracion >> cambiarValoracion: unBooleano conFechaYHora: unDatetime [
-	(like equals: unBooleano)
+	(like = unBooleano)
 		ifTrue: [ like := nil.
-			^ self].
+			^ self ].
 	like := unBooleano.
 	horaYfecha := unDatetime
+]
+
+{ #category : #accessing }
+Valoracion >> horaYfecha [
+	^ horaYfecha 
 ]
 
 { #category : #accessing }
