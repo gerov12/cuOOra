@@ -61,13 +61,14 @@ UsuarioTest >> testAgregarTopicoInteres [
 { #category : #test }
 UsuarioTest >> testCalcularPuntaje [
 	self assert: usuario1 calcularPuntaje equals: 0.
-	
-	usuario1 agregarPregunta: pregunta.	
+	usuario1 agregarPregunta: pregunta.
 	self assert: usuario1 calcularPuntaje equals: 20.
-	
-	usuario1 agregarRespuesta: respuesta.	
+	usuario1 agregarRespuesta: respuesta.
 	self assert: usuario1 calcularPuntaje equals: 70.
-	
+	usuario1 eliminarPregunta: pregunta.
+	self assert: usuario1 calcularPuntaje equals: 50.
+	usuario1 agregarRespuesta: (Respuesta cuerpo: '' usuario: '' fechaYhora: '').
+	self assert: usuario1 calcularPuntaje equals: 100.
 ]
 
 { #category : #test }

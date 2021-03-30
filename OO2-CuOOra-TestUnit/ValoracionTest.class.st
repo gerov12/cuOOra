@@ -24,17 +24,17 @@ ValoracionTest >> setUp [
 
 { #category : #tests }
 ValoracionTest >> testCambiarValoracion [
-	|ahora2|
-	
+	| ahora2 |
 	ahora2 := DateAndTime now.
-	
 	valoracion cambiarValoracion: false conFechaYHora: ahora.
 	self assert: valoracion like equals: false.
 	self assert: valoracion horaYfecha equals: ahora.
-	
 	valoracion cambiarValoracion: false conFechaYHora: ahora2.
-	self assert: valoracion like equals: nil.
+	self assert: valoracion like equals: false.
 	self assert: valoracion horaYfecha equals: ahora2.
+	valoracion cambiarValoracion: true conFechaYHora: ahora.
+	self assert: valoracion like equals: true.
+	self assert: valoracion horaYfecha equals: ahora
 ]
 
 { #category : #tests }
