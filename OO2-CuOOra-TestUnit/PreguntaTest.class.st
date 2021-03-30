@@ -1,6 +1,6 @@
 Class {
 	#name : #PreguntaTest,
-	#superclass : #PublicacionTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'ahora',
 		'pregunta',
@@ -50,12 +50,22 @@ PreguntaTest >> testConstructor [
 
 { #category : #tests }
 PreguntaTest >> testRegistrarValoracion [
-	pregunta registrarValoracionDe: pedro conFechayHora: ahora yLike: true.
+	self assert: pregunta valoraciones size equals: 0.
+	pregunta
+		registrarValoracionDe: pedro
+		conFechayHora: ahora
+		yLike: true.
 	self assert: pregunta valoraciones size equals: 1.
-	pregunta registrarValoracionDe: (Usuario nombre: 'Mario' contraseña: '' fechaYhora: DateAndTime now) conFechayHora: ahora yLike: true.
+	pregunta
+		registrarValoracionDe: (Usuario nombre: 'Mario' contraseña: '' fechaYhora: DateAndTime now)
+		conFechayHora: ahora
+		yLike: true.
 	self assert: pregunta valoraciones size equals: 2.
-	pregunta registrarValoracionDe: pedro conFechayHora: ahora yLike: false.
-	self assert: pregunta valoraciones size equals: 2.
+	pregunta
+		registrarValoracionDe: pedro
+		conFechayHora: ahora
+		yLike: false.
+	self assert: pregunta valoraciones size equals: 2
 ]
 
 { #category : #tests }
