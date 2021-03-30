@@ -1,6 +1,6 @@
 Class {
 	#name : #RespuestaTest,
-	#superclass : #PublicacionTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'ahora',
 		'pedro',
