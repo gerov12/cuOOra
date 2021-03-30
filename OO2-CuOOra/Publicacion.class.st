@@ -15,6 +15,11 @@ Publicacion >> cuerpo [
 	^ cuerpo
 ]
 
+{ #category : #queries }
+Publicacion >> eliminar [
+	^ SubclassResponsibility 
+]
+
 { #category : #accessing }
 Publicacion >> horaYfecha [
 	^ horaYfecha 
