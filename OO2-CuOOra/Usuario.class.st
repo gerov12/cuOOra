@@ -19,13 +19,17 @@ Usuario class >> nombre: unNombre contraseña: unaContraseña fechaYhora: unDate
 ]
 
 { #category : #adding }
-Usuario >> agregarPregunta: unaPregunta [
-	preguntas add: unaPregunta .
+Usuario >> agregarPreguntaConListaDeTopicos: unaColeccion Titulo: unTitulo yCuerpo: unCuerpo [
+	self preguntas add: (Pregunta topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: self fechaYhora: DateAndTime current).
 ]
 
 { #category : #adding }
-Usuario >> agregarRespuesta: unaRespuesta [
-	respuestas add: unaRespuesta .
+Usuario >> agregarRespuestaA: unaPregunta conCuerpo: unCuerpo [
+	| respuesta |
+	respuesta := Respuesta cuerpo: unCuerpo usuario: self fechaYhora: Date current.
+	
+	unaPregunta agregarRespuesta: respuesta.
+	self respuestas add: respuesta.
 ]
 
 { #category : #adding }
