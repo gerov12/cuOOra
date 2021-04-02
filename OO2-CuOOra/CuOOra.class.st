@@ -29,13 +29,32 @@ CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
 { #category : #adding }
 CuOOra >> crearUsuario: unNombre conContraseña: unaContraseña [
 	usuarios add: (Usuario nombre: unNombre contraseña: unaContraseña fechaYhora: DateAndTime current).
+	usuarios last agregarTopicoInteres: self topicos last. "BORRAR (HARDCODE)"
 	^ usuarios last.
+]
+
+{ #category : #hardcode }
+CuOOra >> hardCodePreguntas [
+	|usuario1 topico1 lista|
+	self agregarTopicoConNombre: 'Topico1' yDescripcion: 'descripcion'. 
+	topico1 := self topicos last.
+	lista := OrderedCollection new.
+	lista add: topico1.
+	self crearUsuario: 'Usuario1' conContraseña: '1'. 
+	usuario1 := self usuarios last.
+
+	Pregunta topicos: lista titulo: 'Pregunta1' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
+	Pregunta topicos: lista titulo: 'Pregunta2' cuerpo: 'Cuerpo2' usuario: usuario1 fechaYhora: DateAndTime current.
+	Pregunta topicos: lista titulo: 'Pregunta3' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
+	Pregunta topicos: lista titulo: 'Pregunta4' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
+	Pregunta topicos: lista titulo: 'Pregunta5' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
 ]
 
 { #category : #initialize }
 CuOOra >> initialize [ 
 	usuarios := OrderedCollection new.
 	topicos := OrderedCollection new.
+	self hardCodePreguntas.
 ]
 
 { #category : #accessing }
