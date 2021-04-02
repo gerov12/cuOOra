@@ -10,6 +10,16 @@ Class {
 	#category : #'OO2-CuOOra-model'
 }
 
+{ #category : #queries }
+Publicacion >> cantidadDislikes [
+	^ (valoraciones reject: [ :valoracion | valoracion like ]) size
+]
+
+{ #category : #queries }
+Publicacion >> cantidadLikes [
+	^ (valoraciones select: [ :valoracion | valoracion like ]) size
+]
+
 { #category : #accessing }
 Publicacion >> cuerpo [
 	^ cuerpo
@@ -37,8 +47,7 @@ Publicacion >> registrarValoracionDe: unUsuario conFechayHora: unDatetime yLike:
 
 { #category : #queries }
 Publicacion >> retornarDiferencia [
-	^ (valoraciones select: [ :valoracion | valoracion like ]) size
-		- (valoraciones reject: [ :valoracion | valoracion like ]) size
+	^ self cantidadLikes - self cantidadDislikes. 
 ]
 
 { #category : #abstract }
