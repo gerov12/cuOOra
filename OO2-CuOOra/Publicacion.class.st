@@ -7,7 +7,7 @@ Class {
 		'usuario',
 		'valoraciones'
 	],
-	#category : #'OO2-CuOOra'
+	#category : #'OO2-CuOOra-model'
 }
 
 { #category : #accessing }

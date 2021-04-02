@@ -5,8 +5,21 @@ Class {
 		'usuarios',
 		'topicos'
 	],
-	#category : #'OO2-CuOOra'
+	#classInstVars : [
+		'soleInstance'
+	],
+	#category : #'OO2-CuOOra-model'
 }
+
+{ #category : #'instance creation' }
+CuOOra class >> clearSoleInstance [
+	soleInstance := nil
+]
+
+{ #category : #'instance creation' }
+CuOOra class >> soleInstance [
+	^ soleInstance ifNil: [ soleInstance := self new ]
+]
 
 { #category : #adding }
 CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
@@ -16,6 +29,7 @@ CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
 { #category : #adding }
 CuOOra >> crearUsuario: unNombre conContraseña: unaContraseña [
 	usuarios add: (Usuario nombre: unNombre contraseña: unaContraseña fechaYhora: DateAndTime current).
+	^ usuarios last.
 ]
 
 { #category : #initialize }
@@ -27,6 +41,13 @@ CuOOra >> initialize [
 { #category : #accessing }
 CuOOra >> topicos [
 	^ topicos
+]
+
+{ #category : #utility }
+CuOOra >> usuarioConNombre: unNombre protegidoPor: unaContraseña [
+	^ usuarios
+		detect: [ :each | each nombre = unNombre & (each contraseña = unaContraseña) ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }

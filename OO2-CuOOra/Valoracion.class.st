@@ -6,7 +6,7 @@ Class {
 		'horaYfecha',
 		'like'
 	],
-	#category : #'OO2-CuOOra'
+	#category : #'OO2-CuOOra-model'
 }
 
 { #category : #constructor }

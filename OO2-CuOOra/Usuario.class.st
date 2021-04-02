@@ -10,7 +10,7 @@ Class {
 		'respuestas',
 		'topicosInteres'
 	],
-	#category : #'OO2-CuOOra'
+	#category : #'OO2-CuOOra-model'
 }
 
 { #category : #construction }
