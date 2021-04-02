@@ -42,6 +42,11 @@ Usuario >> calcularPuntaje [
 	^ (preguntas sumNumbers: [ :each | each retornarPuntaje ]) + (respuestas sumNumbers: [ :each | each retornarPuntaje ]) .
 ]
 
+{ #category : #accessing }
+Usuario >> contraseña [
+	^ contraseña
+]
+
 { #category : #deleting }
 Usuario >> eliminarPregunta: unaPregunta [ 
 	preguntas remove: unaPregunta  ifAbsent: [ ^ self ]
@@ -51,6 +56,11 @@ Usuario >> eliminarPregunta: unaPregunta [
 { #category : #deleting }
 Usuario >> eliminarRespuesta: unaRespuesta [ 
 	respuestas remove: unaRespuesta  ifAbsent: [ ^ self ]
+]
+
+{ #category : #accessing }
+Usuario >> nombre [
+	^ nombre
 ]
 
 { #category : #initialization }
