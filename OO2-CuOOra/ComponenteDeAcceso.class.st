@@ -20,7 +20,7 @@ ComponenteDeAcceso >> contraseña: anObject [
 
 { #category : #model }
 ComponenteDeAcceso >> model [
-	^ CuOOra soleInstance 
+	^ CuOOra soleInstance
 ]
 
 { #category : #accessing }
