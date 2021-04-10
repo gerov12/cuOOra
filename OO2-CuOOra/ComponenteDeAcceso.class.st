@@ -46,10 +46,17 @@ ComponenteDeAcceso >> renderButtonsOn: aCanvas [
 
 { #category : #rendering }
 ComponenteDeAcceso >> renderContentOn: aCanvas [
+	self renderHeadingContentOn: aCanvas.
 	aCanvas form: [
 		self renderImputElementsOn: aCanvas. "pongo los imputs de nombre y contraseña"
 		self renderButtonsOn: aCanvas. "pongo los botones para iniciar sesion / registrarse"
 		]
+]
+
+{ #category : #rendering }
+ComponenteDeAcceso >> renderHeadingContentOn: aCanvas [
+	aCanvas heading level: 1; with: 'Bienvenido a CuOOra'.
+	aCanvas horizontalRule. 
 ]
 
 { #category : #rendering }
