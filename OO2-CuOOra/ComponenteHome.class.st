@@ -1,6 +1,6 @@
 Class {
 	#name : #ComponenteHome,
-	#superclass : #WAComponent,
+	#superclass : #Esqueleto,
 	#category : #'OO2-CuOOra-seaside'
 }
 
@@ -10,56 +10,60 @@ ComponenteHome >> obtenerPreguntas [
 	| preguntas |
 	preguntas := self session user obtenerPreguntasRelevantes asSortedCollection: [ :a :b | a horaYfecha  > b horaYfecha ].
 	(preguntas size < 5) ifTrue: [ ^ preguntas ].
-	^ preguntas := preguntas copyFrom: 1 to: 5 
+	^ preguntas first: 5.
 
 ]
 
 { #category : #rendering }
 ComponenteHome >> render: preguntas relevantesOn: aCanvas [
 	aCanvas unorderedList: [ 
-						preguntas do: [ :each |
-							aCanvas listItem: [ 
-								aCanvas paragraph: [  
-									aCanvas heading level: 3; with: each titulo.
-									aCanvas paragraph: [  
-										aCanvas text: 'Realizada por '; 
-										strong: each usuario nombre;
-										text: ' | ', each respuestas size asString,' respuestas'].
-									aCanvas paragraph: [
-										aCanvas text: each cantidadLikes asString, ' likes ', 
-										'| ', each cantidadDislikes asString, ' dislikes'].
-									aCanvas horizontalRule.
-								]
-						 	 ]
-						]
-			 	]
+		preguntas do: [ :each |
+			aCanvas listItem: [ 
+				aCanvas paragraph: [  
+					self renderTituloDe: each On: aCanvas.
+					self renderTopicosDe: each On: aCanvas.
+					self renderAutorYRespuestasDe: each On: aCanvas.
+					self renderLikesDislikesDe: each On: aCanvas.
+					aCanvas horizontalRule.
+				]
+			]
+		]
+	]
+]
+
+{ #category : #rendering }
+ComponenteHome >> renderAutorYRespuestasDe: unaPregunta On: aCanvas [
+	aCanvas
+		paragraph: [ 
+			aCanvas text: 'Realizada por '.
+			self linkAPerfilDe: (unaPregunta usuario) On: aCanvas.
+			aCanvas text: ' | ' , unaPregunta respuestas size asString , ' respuestas' ]
 ]
 
 { #category : #rendering }
 ComponenteHome >> renderContentOn: aCanvas [
-	aCanvas heading: [self renderHeadingContent: aCanvas].
-	aCanvas horizontalRule.
+	self renderHeadingContent: aCanvas.
 	self renderPreguntasRelevantesOn: aCanvas.
-	aCanvas horizontalRule.
-	self renderLogoutButtonOn: aCanvas.
 		
 
 	
 ]
 
 { #category : #rendering }
-ComponenteHome >> renderHeadingContent: aCanvas [
-	aCanvas paragraph with: 'CuOOra ', self session user nombre.
-	
-
-]
-
-{ #category : #rendering }
-ComponenteHome >> renderLogoutButtonOn: aCanvas [
+ComponenteHome >> renderLikesDislikesDe: unaPregunta On: aCanvas [
 	aCanvas
-		paragraph: [ aCanvas anchor
-				callback: [ self answer ];
-				with: [ aCanvas button with: 'Cerrar Sesion' ] ]
+		paragraph: [ aCanvas
+				text: unaPregunta cantidadLikes asString , ' likes ' , '| ', 
+				unaPregunta cantidadDislikes asString , ' dislikes'.
+				aCanvas break.
+			aCanvas space.
+			aCanvas anchor
+				callback: [ self valorar: true A: unaPregunta ];
+				with: [ aCanvas button: 'like' ].
+			aCanvas space: 4.
+			aCanvas anchor
+				callback: [ self valorar: false A: unaPregunta ];
+				with: [ aCanvas button: 'dislike' ] ]
 ]
 
 { #category : #rendering }
@@ -72,4 +76,22 @@ ComponenteHome >> renderPreguntasRelevantesOn: aCanvas [
 				self render: preguntas relevantesOn: aCanvas
 			]
 		
+]
+
+{ #category : #rendering }
+ComponenteHome >> renderTituloDe: unaPregunta On: aCanvas [
+	aCanvas anchor
+		callback: [ self call: (ComponentePregunta con: unaPregunta) ];
+		with: [ aCanvas heading level: 2; with: unaPregunta titulo ]
+]
+
+{ #category : #rendering }
+ComponenteHome >> renderTopicosDe: pregunta On: aCanvas [
+		aCanvas small: [aCanvas citation: 'Topicos: ', ((pregunta topicos collect: [ :each | each nombre ]) asCommaString)]
+]
+
+{ #category : #callbacks }
+ComponenteHome >> valorar: boolean A: pregunta [ 
+	pregunta registrarValoracionDe: (self session user) conFechayHora: DateAndTime current yLike: boolean. 
+	
 ]
