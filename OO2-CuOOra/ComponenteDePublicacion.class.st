@@ -7,6 +7,11 @@ Class {
 	#category : #'OO2-CuOOra-seaside'
 }
 
+{ #category : #constructor }
+ComponenteDePublicacion class >> con: pregunta [ 
+	^ self new con: pregunta yourself.
+]
+
 { #category : #initialize }
 ComponenteDePublicacion >> con: unaPregunta [ 
 	pregunta := unaPregunta.
