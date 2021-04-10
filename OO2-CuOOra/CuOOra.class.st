@@ -24,6 +24,9 @@ CuOOra class >> soleInstance [
 { #category : #adding }
 CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
 	topicos add: (Topico nombre: unNombre descripcion: unaDescripcion).
+	^ topicos last.
+
+	
 ]
 
 { #category : #adding }
@@ -43,11 +46,11 @@ CuOOra >> hardCodePreguntas [
 	self crearUsuario: 'Usuario1' conContraseña: '1'. 
 	usuario1 := self usuarios last.
 
-	Pregunta topicos: lista titulo: 'Pregunta1' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
-	Pregunta topicos: lista titulo: 'Pregunta2' cuerpo: 'Cuerpo2' usuario: usuario1 fechaYhora: DateAndTime current.
-	Pregunta topicos: lista titulo: 'Pregunta3' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
-	Pregunta topicos: lista titulo: 'Pregunta4' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
-	Pregunta topicos: lista titulo: 'Pregunta5' cuerpo: 'Cuerpo1' usuario: usuario1 fechaYhora: DateAndTime current.
+	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta1' yCuerpo: 'Cuerpo1' .
+	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta2' yCuerpo: 'Cuerpo1' .
+	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta3' yCuerpo: 'Cuerpo1' .
+	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta4' yCuerpo: 'Cuerpo1' .
+	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta5' yCuerpo: 'Cuerpo1' .
 ]
 
 { #category : #initialize }
