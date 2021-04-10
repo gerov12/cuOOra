@@ -18,12 +18,19 @@ Esqueleto >> logout [
 ]
 
 { #category : #rendering }
+Esqueleto >> renderCuOOraOn: aCanvas [
+	aCanvas anchor 
+		callback: [ self call: (ComponenteHome new) ];
+		with: [ aCanvas heading level: 1; with: 'CuOOra ' ]
+]
+
+{ #category : #rendering }
 Esqueleto >> renderHeadingContent: aCanvas [
 "una tabla de una fila, con 3 datos en ella"
 	aCanvas table: [
 		aCanvas tableHead: [  
 			aCanvas tableRow: [
-				aCanvas tableData: [aCanvas heading level: 1; with: 'CuOOra '].
+				aCanvas tableData: [self renderCuOOraOn: aCanvas].
 				aCanvas tableData: [aCanvas space: 2].
 				aCanvas tableData: [
 					aCanvas strong: '¡Bienvenido, '. 
