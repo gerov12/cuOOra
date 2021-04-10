@@ -17,6 +17,11 @@ ComponentePerfil >> con: unUsuario [
 	usuario := unUsuario
 ]
 
+{ #category : #callbacks }
+ComponentePerfil >> follow [ 
+	self session user seguirUsuario: usuario
+]
+
 { #category : #rendering }
 ComponentePerfil >> renderAutorYRespuestasDe: unaPregunta On: aCanvas [
 	aCanvas
@@ -24,6 +29,38 @@ ComponentePerfil >> renderAutorYRespuestasDe: unaPregunta On: aCanvas [
 			text: 'Realizada por '; 
 			strong: usuario nombre; 
 			text: ' | ' , unaPregunta respuestas size asString , ' respuestas' ]
+]
+
+{ #category : #rendering }
+ComponentePerfil >> renderBotonSeguirOn: aCanvas [
+	(self session user == usuario) ifFalse: [  
+		(self session user seguidos includes: usuario) 
+		ifTrue: [  
+		aCanvas anchor
+						callback: [];
+						with: [ aCanvas button: 'Siguiendo' ]
+		]
+		ifFalse: [  
+			aCanvas anchor
+						callback: [ self follow ];
+						with: [ aCanvas button: 'Seguir' ]
+		]
+	]
+]
+
+{ #category : #rendering }
+ComponentePerfil >> renderCabeceraOn: aCanvas [
+	aCanvas table: [
+		aCanvas tableHead: [  
+			aCanvas tableRow: [
+				aCanvas tableData: [
+					aCanvas heading level: 2; with: 'Preguntas de ', usuario nombre asCapitalizedPhrase.].
+				aCanvas tableData: [aCanvas space: 2].
+				aCanvas tableData: [self renderBotonSeguirOn: aCanvas].
+			].	
+		].
+	].
+	
 ]
 
 { #category : #rendering }
@@ -51,7 +88,7 @@ ComponentePerfil >> renderListadoOn: aCanvas [
 
 { #category : #rendering }
 ComponentePerfil >> renderPreguntasOn: aCanvas [
-	aCanvas heading level: 2; with: 'Preguntas de ', usuario nombre asCapitalizedPhrase.
+	self renderCabeceraOn: aCanvas.
 	usuario preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
 		ifNotEmpty: [ 
 				self renderListadoOn: aCanvas
