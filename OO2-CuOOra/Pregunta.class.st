@@ -53,7 +53,7 @@ Pregunta >> topicos [
 
 { #category : #constructor }
 Pregunta >> topicos: unaColeccion titulo: unTitulo cuerpo: unCuerpo usuario: unUsuario fechaYhora: unDatetime [
-	topicos := unaColeccion.
+	topicos := unaColeccion .
 	titulo := unTitulo.
 	cuerpo := unCuerpo.
 	usuario := unUsuario.
