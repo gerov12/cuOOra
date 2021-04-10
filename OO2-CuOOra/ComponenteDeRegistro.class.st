@@ -15,5 +15,9 @@ ComponenteDeRegistro >> registrarseEIniciar [
 ComponenteDeRegistro >> renderButtonsOn: aCanvas [
 	aCanvas submitButton "boton para registrarse"
 		callback: [ self registrarseEIniciar ];
-		with: 'Registrarse'
+		with: 'Registrarse'.
+	aCanvas space: 2.
+	aCanvas cancelButton "boton para volver a login"
+		callback: [ self answer ];
+		with: 'Cancelar'
 ]
