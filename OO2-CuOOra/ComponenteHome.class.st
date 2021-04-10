@@ -41,6 +41,24 @@ ComponenteHome >> renderAutorYRespuestasDe: unaPregunta On: aCanvas [
 ]
 
 { #category : #rendering }
+ComponenteHome >> renderCabeceraOn: aCanvas [
+	aCanvas table: [
+		aCanvas tableHead: [  
+			aCanvas tableRow: [
+				aCanvas tableData: [aCanvas heading level: 2; with: 'Últimas preguntas'.].
+				aCanvas tableData: [aCanvas space: 2].
+				aCanvas tableData: [
+					aCanvas anchor
+					callback: [ self call: ComponenteCrearPregunta new ];
+					with: [ aCanvas button: 'Hacer una nueva pregunta' ].
+				].
+			].	
+		].
+	].
+	
+]
+
+{ #category : #rendering }
 ComponenteHome >> renderContentOn: aCanvas [
 	self renderHeadingContent: aCanvas.
 	self renderPreguntasRelevantesOn: aCanvas.
@@ -69,7 +87,7 @@ ComponenteHome >> renderLikesDislikesDe: unaPregunta On: aCanvas [
 { #category : #rendering }
 ComponenteHome >> renderPreguntasRelevantesOn: aCanvas [
 	| preguntas |
-	aCanvas heading level: 2; with: 'Últimas preguntas'.
+	self renderCabeceraOn: aCanvas.
 	preguntas := self obtenerPreguntas .
 	preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
 		ifNotEmpty: [ 
@@ -88,6 +106,15 @@ ComponenteHome >> renderTituloDe: unaPregunta On: aCanvas [
 { #category : #rendering }
 ComponenteHome >> renderTopicosDe: pregunta On: aCanvas [
 		aCanvas small: [aCanvas citation: 'Topicos: ', ((pregunta topicos collect: [ :each | each nombre ]) asCommaString)]
+]
+
+{ #category : #rendering }
+ComponenteHome >> style [ 
+	^ 'a[href] {
+    color: #000000;
+    text-decoration: none;
+}
+'
 ]
 
 { #category : #callbacks }

@@ -43,3 +43,12 @@ ComponenteRespuesta >> renderContinuacionOn: aCanvas [
 	]
 	
 ]
+
+{ #category : #rendering }
+ComponenteRespuesta >> style [ 
+	^ 'a[href] {
+    color: #000000;
+    text-decoration: none;
+}
+'
+]

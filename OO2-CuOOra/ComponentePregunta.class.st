@@ -33,3 +33,12 @@ ComponentePregunta >> renderRespuestasOn: aCanvas [
 	aCanvas big: 'No hay mas respuestas.'
 	
 ]
+
+{ #category : #rendering }
+ComponentePregunta >> style [ 
+	^ 'a[href] {
+    color: #000000;
+    text-decoration: none;
+}
+'
+]
