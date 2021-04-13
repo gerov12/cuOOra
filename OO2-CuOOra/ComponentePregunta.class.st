@@ -40,5 +40,15 @@ ComponentePregunta >> style [
     color: #000000;
     text-decoration: none;
 }
-'
+
+.mensaje{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.9rem;
+    padding-bottom: 0.5rem;
+    width: 90%
+}'
 ]

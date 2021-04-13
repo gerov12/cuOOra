@@ -54,7 +54,7 @@ ComponentePerfil >> renderCabeceraOn: aCanvas [
 		aCanvas tableHead: [  
 			aCanvas tableRow: [
 				aCanvas tableData: [
-					aCanvas heading level: 2; with: 'Preguntas de ', usuario nombre asCapitalizedPhrase.].
+					aCanvas heading level: 2; with: 'Preguntas de ', usuario nombre].
 				aCanvas tableData: [aCanvas space: 2].
 				aCanvas tableData: [self renderBotonSeguirOn: aCanvas].
 			].	
