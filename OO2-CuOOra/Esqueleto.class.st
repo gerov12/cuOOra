@@ -17,6 +17,11 @@ Esqueleto >> logout [
    self requestContext redirectTo: self application url
 ]
 
+{ #category : #accessing }
+Esqueleto >> model [
+	^ CuOOra soleInstance 
+]
+
 { #category : #rendering }
 Esqueleto >> renderCuOOraOn: aCanvas [
 	aCanvas anchor 
