@@ -50,11 +50,11 @@ ComponenteCrearPregunta >> renderContentOn: aCanvas [
 	self renderHeadingContent: aCanvas.
 	aCanvas heading level: 2; with: 'Nueva Pregunta'.
 	aCanvas horizontalRule.
-	aCanvas form: [self renderImputContentOn: aCanvas]
+	aCanvas form: [self renderInputContentOn: aCanvas]
 ]
 
 { #category : #rendering }
-ComponenteCrearPregunta >> renderImputContentOn: aCanvas [
+ComponenteCrearPregunta >> renderInputContentOn: aCanvas [
 	aCanvas table: [
 		aCanvas tableRow: [    
 			aCanvas tableData: [aCanvas emphasis: 'Titulo'; space].

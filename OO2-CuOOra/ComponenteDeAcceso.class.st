@@ -48,7 +48,7 @@ ComponenteDeAcceso >> renderButtonsOn: aCanvas [
 ComponenteDeAcceso >> renderContentOn: aCanvas [
 	self renderHeadingContentOn: aCanvas.
 	aCanvas form: [
-		self renderImputElementsOn: aCanvas. "pongo los imputs de nombre y contraseña"
+		self renderInputElementsOn: aCanvas. "pongo los imputs de nombre y contraseña"
 		self renderButtonsOn: aCanvas. "pongo los botones para iniciar sesion / registrarse"
 		]
 ]
@@ -60,7 +60,7 @@ ComponenteDeAcceso >> renderHeadingContentOn: aCanvas [
 ]
 
 { #category : #rendering }
-ComponenteDeAcceso >> renderImputElementsOn: aCanvas [
+ComponenteDeAcceso >> renderInputElementsOn: aCanvas [
 	aCanvas label: 'Usuario'.
 	aCanvas paragraph: [ aCanvas textInput on: #nombre of: self ]. "espacio para poner nombre de usuario"
 	aCanvas label: 'Contraseña'.

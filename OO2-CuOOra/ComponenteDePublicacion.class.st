@@ -70,6 +70,6 @@ ComponenteDePublicacion >> renderTopicosOn: aCanvas [
 ]
 
 { #category : #callbacks }
-ComponenteDePublicacion >> valorar: boolean A: unaPregunta [ 
-	unaPregunta registrarValoracionDe: (self session user) conFechayHora: DateAndTime current yLike: boolean. 
+ComponenteDePublicacion >> valorar: boolean A: unaPublicacion [ 
+	unaPublicacion registrarValoracionDe: (self session user) conFechayHora: DateAndTime current yLike: boolean. 
 ]
