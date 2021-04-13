@@ -80,7 +80,8 @@ Usuario >> obtenerPreguntasRelevantes [
 	preguntasAux := OrderedCollection new.
 	preguntasAux add: ((topicosInteres collect: [ :each | each preguntas ]) flatCollect: [ :each | each ]).
 	preguntasAux add: ((seguidos collect: [ :each | each preguntas ]) flatCollect: [ :each | each ]).
-	^ preguntasAux flatCollect: [ :each | each ]. 
+	^ ((preguntasAux flatCollect: [ :each | each ]) asSortedCollection: [ :a :b | a horaYfecha  > b horaYfecha ])
+		removeDuplicates . 
 ]
 
 { #category : #accessing }
