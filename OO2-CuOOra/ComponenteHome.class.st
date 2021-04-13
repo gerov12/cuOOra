@@ -8,7 +8,7 @@ Class {
 ComponenteHome >> obtenerPreguntas [
 	"en caso de haber mas de 5 preguntas se devuelven solo las primeras 5"
 	| preguntas |
-	preguntas := self session user obtenerPreguntasRelevantes asSortedCollection: [ :a :b | a horaYfecha  > b horaYfecha ].
+	preguntas := self session user obtenerPreguntasRelevantes.
 	(preguntas size < 5) ifTrue: [ ^ preguntas ].
 	^ preguntas first: 5.
 
@@ -114,7 +114,17 @@ ComponenteHome >> style [
     color: #000000;
     text-decoration: none;
 }
-'
+
+.mensaje{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.9rem;
+    padding-bottom: 0.5rem;
+    width: 90%
+}'
 ]
 
 { #category : #callbacks }
