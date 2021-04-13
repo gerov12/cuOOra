@@ -8,7 +8,7 @@ Class {
 		'topico1',
 		'topico2'
 	],
-	#category : #'OO2-CuOOra-testUnit'
+	#category : #'OO2-CuOOra-TestUnit'
 }
 
 { #category : #setup }
