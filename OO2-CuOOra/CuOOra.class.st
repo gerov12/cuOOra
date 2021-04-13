@@ -24,7 +24,6 @@ CuOOra class >> soleInstance [
 { #category : #adding }
 CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
 	topicos add: (Topico nombre: unNombre descripcion: unaDescripcion).
-	^ topicos last.
 
 	
 ]
@@ -32,32 +31,61 @@ CuOOra >> agregarTopicoConNombre: unNombre yDescripcion: unaDescripcion [
 { #category : #adding }
 CuOOra >> crearUsuario: unNombre conContraseña: unaContraseña [
 	usuarios add: (Usuario nombre: unNombre contraseña: unaContraseña fechaYhora: DateAndTime current).
-	usuarios last agregarTopicoInteres: self topicos last. "BORRAR (HARDCODE)"
 	^ usuarios last.
 ]
 
-{ #category : #hardcode }
-CuOOra >> hardCodePreguntas [
-	|usuario1 topico1 lista|
-	self agregarTopicoConNombre: 'Topico1' yDescripcion: 'descripcion'. 
-	topico1 := self topicos last.
-	lista := OrderedCollection new.
-	lista add: topico1.
-	self crearUsuario: 'Usuario1' conContraseña: '1'. 
-	usuario1 := self usuarios last.
+{ #category : #private }
+CuOOra >> hardCode [
+	|pedro diego juan oo1 testU smalltalk listaP listaD|
+	self agregarTopicoConNombre: 'OO1' yDescripcion: 'descripcion oo1'. 
+	self agregarTopicoConNombre: 'Test de unidad' yDescripcion: 'descripcion testUnit'. 
+	self agregarTopicoConNombre: 'Smalltalk' yDescripcion: 'descripcion smalltalk'. 
+	oo1 := topicos at: 1.
+	testU := topicos at: 2.
+	smalltalk := topicos at: 3.
+	
+	listaP := OrderedCollection new.
+	listaP add: oo1. listaP add: testU.
+	
+	listaD := OrderedCollection new.
+	listaD add: oo1. listaD add: smalltalk.
+	
+	pedro := self crearUsuario: 'pedro@cuoora.com' conContraseña: 'pedro@cuoora.com'.
+	diego := self crearUsuario: 'diego@cuoora.com' conContraseña: 'diego@cuoora.com'.
+	juan := self crearUsuario: 'juan@cuoora.com' conContraseña: 'juan@cuoora.com'.
 
-	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta1' yCuerpo: 'Cuerpo1' .
-	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta2' yCuerpo: 'Cuerpo1' .
-	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta3' yCuerpo: 'Cuerpo1' .
-	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta4' yCuerpo: 'Cuerpo1' .
-	usuario1 agregarPreguntaConListaDeTopicos: lista Titulo: 'Pregunta5' yCuerpo: 'Cuerpo1' .
+	juan seguirUsuario: diego. pedro seguirUsuario: juan.
+	
+	pedro agregarPreguntaConListaDeTopicos: listaP Titulo: '¿Para qué sirve el método SetUp?' yCuerpo: '...' .
+	diego agregarPreguntaConListaDeTopicos: listaD Titulo: '¿Qué significa #messageNotUnderstoood?' yCuerpo: '...' .
+	
+	diego agregarRespuestaA: (pedro preguntas first) conCuerpo: 
+		'Sirve para instanciar los objetos que son evaluados por el test en un único método y que se ejecute siempre antes de cada test.'.
+	pedro agregarRespuestaA: (diego preguntas first) conCuerpo: 
+		'Significa que el objeto que recibió el mensaje no encontró ningún método para ejecutar en respuesta.'.
 ]
 
 { #category : #initialize }
 CuOOra >> initialize [ 
 	usuarios := OrderedCollection new.
 	topicos := OrderedCollection new.
-	self hardCodePreguntas.
+	self hardCode.
+]
+
+{ #category : #utility }
+CuOOra >> parsearTopicos: listaNombres [
+	(listaNombres isEmpty or: [listaNombres = 'Ingrese tópicos separados por coma']) 
+	ifTrue: [ ^ OrderedCollection new ].
+	^ listaNombres findTokens: (', ', ',').
+]
+
+{ #category : #utility }
+CuOOra >> retornarTopicos: listaNombres [
+	| lista |
+	lista := (self parsearTopicos: listaNombres).
+	lista ifNotEmpty: 
+		[ ^ lista collect: [ :each | self validarTopico: each ]].
+	^ lista
 ]
 
 { #category : #accessing }
@@ -75,4 +103,12 @@ CuOOra >> usuarioConNombre: unNombre protegidoPor: unaContraseña [
 { #category : #accessing }
 CuOOra >> usuarios [
 	^ usuarios
+]
+
+{ #category : #utility }
+CuOOra >> validarTopico: nombreTopico [
+	^ topicos 
+		detect: [ :each | each nombre = nombreTopico ] 
+		ifNone: [ self agregarTopicoConNombre: nombreTopico yDescripcion: ''.
+					 ^ topicos last.]
 ]
