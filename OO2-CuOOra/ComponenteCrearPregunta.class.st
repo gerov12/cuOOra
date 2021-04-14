@@ -46,8 +46,7 @@ ComponenteCrearPregunta >> renderButtonsOn: aCanvas [
 ]
 
 { #category : #rendering }
-ComponenteCrearPregunta >> renderContentOn: aCanvas [
-	self renderHeadingContent: aCanvas.
+ComponenteCrearPregunta >> renderContenidoOn: aCanvas [
 	aCanvas heading level: 2; with: 'Nueva Pregunta'.
 	aCanvas horizontalRule.
 	aCanvas form: [self renderInputContentOn: aCanvas]

@@ -59,12 +59,15 @@ ComponenteHome >> renderCabeceraOn: aCanvas [
 ]
 
 { #category : #rendering }
-ComponenteHome >> renderContentOn: aCanvas [
-	self renderHeadingContent: aCanvas.
-	self renderPreguntasRelevantesOn: aCanvas.
+ComponenteHome >> renderContenidoOn: aCanvas [
+	| preguntas |
+	self renderCabeceraOn: aCanvas.
+	preguntas := self obtenerPreguntas .
+	preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
+		ifNotEmpty: [ 
+				self render: preguntas relevantesOn: aCanvas
+			]
 		
-
-	
 ]
 
 { #category : #rendering }
@@ -82,18 +85,6 @@ ComponenteHome >> renderLikesDislikesDe: unaPregunta On: aCanvas [
 			aCanvas anchor
 				callback: [ self valorar: false A: unaPregunta ];
 				with: [ aCanvas button: 'dislike' ] ]
-]
-
-{ #category : #rendering }
-ComponenteHome >> renderPreguntasRelevantesOn: aCanvas [
-	| preguntas |
-	self renderCabeceraOn: aCanvas.
-	preguntas := self obtenerPreguntas .
-	preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
-		ifNotEmpty: [ 
-				self render: preguntas relevantesOn: aCanvas
-			]
-		
 ]
 
 { #category : #rendering }

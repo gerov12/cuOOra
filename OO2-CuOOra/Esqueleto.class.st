@@ -23,6 +23,17 @@ Esqueleto >> model [
 ]
 
 { #category : #rendering }
+Esqueleto >> renderContenidoOn: aCanvas [
+	self subclassResponsibility 
+]
+
+{ #category : #rendering }
+Esqueleto >> renderContentOn: aCanvas [
+	self renderHeadingContent: aCanvas.
+	self renderContenidoOn: aCanvas
+]
+
+{ #category : #rendering }
 Esqueleto >> renderHeadingContent: aCanvas [
 "una tabla de una fila, con 3 datos en ella"
 	aCanvas table: [ 

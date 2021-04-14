@@ -27,8 +27,7 @@ ComponenteDePublicacion >> renderAutorYRespuestasOn: aCanvas [
 ]
 
 { #category : #rendering }
-ComponenteDePublicacion >> renderContentOn: aCanvas [
-	self renderHeadingContent: aCanvas.
+ComponenteDePublicacion >> renderContenidoOn: aCanvas [
 	aCanvas paragraph: [ 
 			aCanvas heading level: 2; with: pregunta titulo.
 			self renderTopicosOn: aCanvas.

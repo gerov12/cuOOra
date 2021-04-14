@@ -22,6 +22,16 @@ ComponentePerfil >> follow [
 	self session user seguirUsuario: usuario
 ]
 
+{ #category : #'non used' }
+ComponentePerfil >> obtenerPreguntas [ 
+	^ self "se hereda pero no se usa"
+]
+
+{ #category : #'non used' }
+ComponentePerfil >> render: preguntas relevantesOn: aCanvas [
+	^ self "se hereda pero no se usa"
+]
+
 { #category : #rendering }
 ComponentePerfil >> renderAutorYRespuestasDe: unaPregunta On: aCanvas [
 	aCanvas
@@ -64,9 +74,12 @@ ComponentePerfil >> renderCabeceraOn: aCanvas [
 ]
 
 { #category : #rendering }
-ComponentePerfil >> renderContentOn: aCanvas [
-	self renderHeadingContent: aCanvas.
-	self renderPreguntasOn: aCanvas.
+ComponentePerfil >> renderContenidoOn: aCanvas [
+	self renderCabeceraOn: aCanvas.
+	usuario preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
+		ifNotEmpty: [ 
+				self renderListadoOn: aCanvas
+			]
 ]
 
 { #category : #rendering }
@@ -84,13 +97,4 @@ ComponentePerfil >> renderListadoOn: aCanvas [
 			]
 		]
 	]
-]
-
-{ #category : #rendering }
-ComponentePerfil >> renderPreguntasOn: aCanvas [
-	self renderCabeceraOn: aCanvas.
-	usuario preguntas ifEmpty:[aCanvas paragraph: 'No se encontraron preguntas...']
-		ifNotEmpty: [ 
-				self renderListadoOn: aCanvas
-			]
 ]
