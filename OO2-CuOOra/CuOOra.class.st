@@ -72,7 +72,7 @@ CuOOra >> initialize [
 	self hardCode.
 ]
 
-{ #category : #utility }
+{ #category : #private }
 CuOOra >> parsearTopicos: listaNombres [
 	(listaNombres isEmpty or: [listaNombres = 'Ingrese tópicos separados por coma']) 
 	ifTrue: [ ^ OrderedCollection new ].
@@ -105,7 +105,7 @@ CuOOra >> usuarios [
 	^ usuarios
 ]
 
-{ #category : #utility }
+{ #category : #private }
 CuOOra >> validarTopico: nombreTopico [
 	^ topicos 
 		detect: [ :each | each nombre = nombreTopico ] 
